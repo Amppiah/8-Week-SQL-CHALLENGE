@@ -13,7 +13,7 @@ favourite .
 
 #Below are the questions Danny needed answers to :
 
-##What is the total amount each customer spent at the restaurant?
+*What is the total amount each customer spent at the restaurant?
 ##How many days has each customer visited the restaurant?
 ##What was the first item from the menu purchased by each customer?
 ##What is the most purchased item on the menu and how many times was it purchased by all customers?
