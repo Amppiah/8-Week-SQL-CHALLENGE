@@ -3,7 +3,6 @@
 I got the change to practice my skiils and really appreciative of these case studies @DatawithDanny
 
 #CASE STUDY #1 : DANNY'S DINER
-![image](https://user-images.githubusercontent.com/94468487/186499199-83a16e1a-5879-46b7-9676-4b5e1569bf35.png)
 
 ##You can have a closer look at the case study [Here](https://8weeksqlchallenge.com/case-study-1/)
 As a result of Danny's love for food, he decides to embark on a risky venture and invest in a restaurant
