@@ -2,7 +2,7 @@
 ## This repository contains the solutions to the #8weekSQLChallenge set up by Danny . 
 I got the change to practice my skiils and really appreciative of these case studies @DatawithDanny
 
-#CASE STUDY #1 : DANNY'S DINER
+**CASE STUDY #1 : DANNY'S DINER**
 
 ##You can have a closer look at the case study [Here](https://8weeksqlchallenge.com/case-study-1/)
 As a result of Danny's love for food, he decides to embark on a risky venture and invest in a restaurant
@@ -11,8 +11,7 @@ He has data from a few months of Operation and wants to use it to answer a few q
 especially about their visiting patterns, how much money they’ve spent and also which menu items are their
 favourite .
 
-#Below are the questions Danny needed answers to :
-
+Below are the questions Danny needed answers to :
 -What is the total amount each customer spent at the restaurant?
 -How many days has each customer visited the restaurant?
 -What was the first item from the menu purchased by each customer?
