@@ -1,0 +1,201 @@
+CREATE TABLE Sales (
+"customer_id" VARCHAR (1),
+"order_date" DATE,
+"product_id" INTEGER 
+);
+
+INSERT INTO Sales ("customer_id","order_date","product_id")
+VALUES 
+  ('A', '2021-01-01', '1'),
+  ('A', '2021-01-01', '2'),
+  ('A', '2021-01-07', '2'),
+  ('A', '2021-01-10', '3'),
+  ('A', '2021-01-11', '3'),
+  ('A', '2021-01-11', '3'),
+  ('B', '2021-01-01', '2'),
+  ('B', '2021-01-02', '2'),
+  ('B', '2021-01-04', '1'),
+  ('B', '2021-01-11', '1'),
+  ('B', '2021-01-16', '3'),
+  ('B', '2021-02-01', '3'),
+  ('C', '2021-01-01', '3'),
+  ('C', '2021-01-01', '3'),
+  ('C', '2021-01-07', '3');
+
+  CREATE TABLE Menu
+ ( "product_id" INTEGER ,
+  "product_name" VARCHAR (5) ,
+  "price" INTEGER 
+  );
+
+  INSERT INTO Menu ("product_id","product_name","price")
+  VALUES 
+  ('1', 'sushi', '10'),
+  ('2', 'curry', '15'),
+  ('3', 'ramen', '12');
+  
+
+  CREATE TABLE Members (
+  "customer_id" VARCHAR(1)  ,
+  "join_date" DATE
+  );
+
+  INSERT INTO Members ("customer_id","join_date")
+  VALUES
+  ('A','2021-01-07'),
+  ('B', '2021-01-09');
+----CHECK TO MAKE SURE THE TABLES WERE CREATED AND RIGHT INFORMATION INPUTED
+  Select *
+  From Sales
+
+  Select *
+  From Menu
+
+  Select *
+  From Members
+
+ -----TOTAL AMOUNT EACH CUSTOMER SPENT AT  THE RESTAURANT
+ Select s.customer_id, SUM(m.price) as Total_Amount
+ From Sales s
+ JOIN Menu m
+ ON s.product_id = m.product_id
+ GROUP BY customer_id
+
+ -----HOW MANY DAYS EACH CUSTOMER HAS VISITED THE RESTAURANT
+ Select customer_id, COUNT(DISTINCT(order_date) as Number_of_Days
+ From Sales
+ GROUP BY customer_id
+
+ -----FIRST ITEM PURCHASED BY EACH CUSTOMER
+ 
+ WITH Ordered_Item AS
+ 
+( SELECT s.customer_id, 
+       m.product_name, 
+       s.order_date,
+       DENSE_RANK() OVER (PARTITION BY s.customer_id ORDER BY s.order_date) as rank
+FROM Menu m
+join Sales s
+ON m.product_id = s.product_id
+GROUP BY s.customer_id, m.product_name,s.order_date
+)
+SELECT customer_id,product_name
+FROM Ordered_Item
+WHERE rank = 1
+
+-----MOST PURCHASED ITEM ON THE MENU AND HOW MANY TIMES IT WAS PURCHASED BY CUSTOMERS
+
+Select TOP 1 m.product_name, Count(s.product_id) 
+From Sales s
+JOIN Menu m
+ON s.product_id = m.product_id
+GROUP BY m.product_name
+ORDER BY Count(s.product_id) desc
+
+----MOST POPULAR ITEM FOR EACH CUSTOMER
+
+WITH popular_item AS
+(Select s.customer_id, 
+       m.product_name,
+       Count(s.product_id) as Total,
+       DENSE_RANK () OVER (PARTITION BY s.customer_id ORDER BY Count(s.product_id) DESC ) as rank
+
+From Sales s
+JOIN Menu m
+ON s.product_id = m.product_id
+Group By s.customer_id, m.product_name
+)
+Select customer_id, product_name,Total
+From popular_item
+Where rank = 1
+
+----ITEM PURCHASED BY EACH CUSTOMER AFTER THEY BECAME MEMBERS
+
+WITH Rank AS 
+(Select s.customer_id,
+        s.order_date,
+        m.product_name,
+		Mem.join_date,
+        DENSE_RANK () OVER (PARTITION BY s.customer_id ORDER BY s.order_date) as rank
+From Menu m
+JOIN Sales s
+ON m.product_id = s.product_id
+JOIN Members Mem
+ON s.customer_id = Mem.customer_id
+WHERE s.order_date >= Mem.join_date
+)
+Select customer_id, order_date, product_name
+From Rank
+Where rank = 1
+
+----ITEM PURCHASED BY THE CUSTOMER JUST AFTER BECOMING A MEMBER
+
+WITH Rank as
+(Select s.customer_id, 
+        m.product_name,
+		s.order_date,
+		Mem.join_date,
+		DENSE_RANK () OVER (PARTITION BY s.customer_id ORDER BY s.order_date) as rank
+From Menu m
+JOIN Sales s
+ON m.product_id = s.product_id
+JOIN Members Mem
+ON s.customer_id = Mem.customer_id
+Where s.order_date < Mem.join_date
+)
+Select *
+From Rank
+Where rank = 1
+
+-----TOTAL ITEMS AND AMOUNT SPENT BY EACH CUSTOMER BEFORE THEY BECAME A MEMBER 
+Select s.customer_id, 
+		Count(s.product_id) as count,
+		sum(m.price) as Total		
+From Sales s
+JOIN Menu m
+ON s.product_id = m.product_id
+JOIN Members Mem
+ON s.customer_id = Mem.customer_id
+WHERE s.order_date < Mem.join_date
+GROUP BY s.customer_id
+
+------HOW MANY POINTS WILL EACH CUSTOMER HAVE IF $1 spent equate to 10pts and sushi has 2x pts multiplier
+
+WITH Points_cte AS 
+(Select *, 
+		CASE When product_name ='sushi' THEN price*20
+		ELSE price*10
+		END AS points
+From Menu
+)
+Select s.customer_id, Sum(p.points) as T_Points
+From Sales s
+JOIN Points_cte p
+ON s.product_id = p.product_id
+Group by s.customer_id
+
+
+----HOW MANY PTS DOES A AND B HAVE IF THE FIRST WEEK AFTER A CUSTOMER JOINS THE PROGRAM THEY EARN 2PT ON ALL ITEMS
+
+WITH Dates AS 
+(
+   SELECT *, 
+      DATEADD(DAY, 6, join_date) AS valid_date, 
+      EOMONTH('2021-01-31') AS last_date
+   FROM members 
+)
+Select s.customer_id, 
+       SUM(
+	   Case 
+	  When m.product_name = 'sushi' THEN m.price*20
+	  When s.order_date between d.join_date and d.valid_date Then m.price*20
+	  Else m.price*10
+	  END 
+	  ) as Points
+From Dates d
+join Sales s
+On d.customer_id = s.customer_id
+Join Menu m
+On m.product_id = s.product_id
+Where s.order_date < d.last_date
+Group by s.customer_id
