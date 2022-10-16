@@ -1,8 +1,8 @@
-# 8-Week-SQL-CHALLENGE By Data with Danny
-## This repository contains the solutions to the #8weekSQLChallenge set up by Danny . 
-I got the change to practice my skiils and really appreciative of these case studies @DatawithDanny
-
 **CASE STUDY #1 : DANNY'S DINER**
+
+## This repository contains the solutions to the First Case study in the #8weekSQLChallenge set up by Danny . 
+I got the change to practice my skiils and really appreciative of these case study by DatawithDanny
+
 
 ![image](https://user-images.githubusercontent.com/94468487/186518250-6bca212f-c052-4b28-9c16-b8794c789d21.png)
 
