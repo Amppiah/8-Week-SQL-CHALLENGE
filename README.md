@@ -6,7 +6,7 @@ I got the change to practice my skiils and really appreciative of these case stu
 
 ![image](https://user-images.githubusercontent.com/94468487/186518250-6bca212f-c052-4b28-9c16-b8794c789d21.png)
 
-##You can have a closer look at the case study [Here](https://8weeksqlchallenge.com/case-study-1/)
+## You can have a closer look at the case study [Here](https://8weeksqlchallenge.com/case-study-1/)
 As a result of Danny's love for food, he decides to embark on a risky venture and invest in a restaurant
 that serves his favorite meals: **Sushi**,**Ramen** and **Curry**. 
 He has data from a few months of Operation and wants to use it to answer a few questions about the customers 
