@@ -1,7 +1,7 @@
 ## Pizza Runner Case Study
 
 ![image](https://user-images.githubusercontent.com/94468487/196283717-35533249-81a6-4bdf-8aec-ab87b538f435.png)
-<img src="https://user-images.githubusercontent.com/94468487/196283717-35533249-81a6-4bdf-8aec-ab87b538f435.png"  width="120" height="120">
+<img src="(https://user-images.githubusercontent.com/94468487/196283717-35533249-81a6-4bdf-8aec-ab87b538f435.png)" width="50%" height="50%">
 
 
 
