@@ -1,6 +1,7 @@
 ## Pizza Runner Case Study
 
-## ![image](https://user-images.githubusercontent.com/94468487/196283717-35533249-81a6-4bdf-8aec-ab87b538f435.png)
+![image](https://user-images.githubusercontent.com/94468487/196283717-35533249-81a6-4bdf-8aec-ab87b538f435.png)
+<img src="image.png" width="50%" height="50%"
 
 Danny has taken an interest in Pizza after a post from His instagram feed caught his attention ,
 it was " 80s Retro Styling and Pizza in the Future" . Danny was sold on this idea but was not 
