@@ -1,14 +1,1 @@
-CREATE TEMP TABLE Customer_orders_temp AS
-Select order_id,
-	   customer_id,
-	   pizza_id,
-CASE 
-	WHEN exclusions IS NULL or exclusions LIKE 'NULLL' THEN ''
-	ELSE exclusions
-	END AS exclusions,
-CASE 
-	WHEN extras IS NULL or extras LIKE 'NULL' THEN ''
-	ELSE extras
-	END AS extras,
-	order_time
-From Customer_orders
+
