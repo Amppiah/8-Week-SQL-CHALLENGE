@@ -1,5 +1,5 @@
 # Pizza Runner
-##TABLE : Customer Orders
+## TABLE : Customer Orders
 
 A view of the customer orders table reveals some issues that need to be corrected.
 - The exclusions and extra column have some null values that will need to be changed 
@@ -35,7 +35,7 @@ From Customer_orders_temp;
 - Some values have 'km' attched whilst others do not so it is neccesary to exclude 
   the 'km' to make it uniform .
 - The duration columns also shows a mix of 'mins', 'minutes' and 'minute' attached 
-- to the values and for uniformity they need to be trimmed of the numbers .
+  to the values and for uniformity they need to be trimmed of the numbers .
 ```sql
 Select order_id,
 	   runner_id,
