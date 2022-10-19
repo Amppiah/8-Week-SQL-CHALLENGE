@@ -5,8 +5,8 @@
 ### 1. How many pizzas were ordered?
 
 ```sql
-
-
+Select COUNT (order_id)
+From Customer_orders
 ```
 ***
 
