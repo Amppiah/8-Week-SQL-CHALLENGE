@@ -1,7 +1,9 @@
 # Pizza Runner
 ##TABLE : Customer Orders
-A view of the customer orders table reveal some issues that need to be corrected.
-- The exclusions and extra column will need to be cleaned of the nulls to ''
+
+A view of the customer orders table reveals some issues that need to be corrected.
+- The exclusions and extra column have some null values that will need to be changed 
+  to empty '' values .
 
 
 
@@ -28,9 +30,13 @@ From Customer_orders_temp;
 ```
 # Results
 
-## Runners_orders
-
-````sql
+## TABLE :Runners_orders
+- The pickup-time shows some rows having null values which need to replaced with ''
+- Some values have 'km' attched whilst others do not so it is neccesary to exclude 
+  the 'km' to make it uniform .
+- The duration columns also shows a mix of 'mins', 'minutes' and 'minute' attached 
+- to the values and for uniformity they need to be trimmed of the numbers .
+```sql
 Select order_id,
 	   runner_id,
 CASE 
@@ -57,14 +63,15 @@ END AS cancellation
 INTO Runner_order_temp
 From Runner_orders ;
 
-````
+```
 # Results
 
 
 ## Altering the datatype of the Runner_orders
-````sql
+After removing unwanted values from the columns, we can change the data types of the colums
+```sql
 ALTER TABLE Runner_order_temp
 ALTER COLUMN [pickup-time] DATETIME,
 ALTER COLUMN distance FLOAT,
 ALTER COLUMN [duration(m)] INTEGER
-````
+```
