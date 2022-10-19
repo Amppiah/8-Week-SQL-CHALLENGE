@@ -13,8 +13,8 @@ From Customer_orders
 ### 2. How many unique customer orders were made?
 
 ``` sql
-
-
+Select COUNT (DISTINCT (order_id))
+From Customer_orders
 ```
 ***
 
