@@ -5,7 +5,7 @@ A view of the customer orders table reveal some issues that need to be corrected
 
 
 
-````sql
+```sql
 Select order_id,
 	   customer_id,
 	   pizza_id,
@@ -25,7 +25,7 @@ From Customer_orders
 Select *
 From Customer_orders_temp;
 
-````
+```
 # Results
 
 ## Runners_orders
