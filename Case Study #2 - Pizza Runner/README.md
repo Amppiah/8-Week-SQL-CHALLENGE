@@ -14,5 +14,5 @@ He has prepared an entity relationship diagram fo his database design but he req
 cleaning it for better quality and to perform calculations to better his runners and optimise the operations 
 business .
 
-![image](https://user-images.githubusercontent.com/94468487/196292240-90028055-28b9-41d1-af2e-f172ff5e0d47.png)
+
 
