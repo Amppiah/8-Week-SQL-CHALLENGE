@@ -1,4 +1,4 @@
-# RUnner and Customer Experience 
+# Runner and Customer Experience 
 ## Questions to be analysed in this part of the case study :
 
 ***
