@@ -5,7 +5,9 @@
 ### 1. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
 
 ```sql
-
+Select DATEPART(week,registration_Date) AS Week, COUNT(runner_id) AS Total_runners
+From Runners
+GROUP BY DATEPART(week,registration_Date) ;
 ```
 ***
 
