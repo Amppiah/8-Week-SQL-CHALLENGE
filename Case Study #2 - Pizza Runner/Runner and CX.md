@@ -14,7 +14,10 @@ GROUP BY DATEPART(week,registration_Date) ;
 ### 2.What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 
 ``` sql
-
+Select [runner_id], DATEDIFF(MINUTE,order_time, [pickup-time]) AS Runer_pickup
+From Customer_orders_temp C
+JOIN Runner_order_temp R
+ON C.order_id = R.order_id ;
 ```
 ***
 
