@@ -65,6 +65,11 @@ WHERE [duration(m)] <> '' ;
 
 ### 7. What is the successful delivery percentage for each runner?
 ``` sql
-
+Select runner_id, 
+(100*SUM(CASE WHEN distance = 0 THEN 0
+	  ELSE 1
+	  END)/ COUNT(*) )AS Success_percent
+FROM Runner_order_temp 
+GROUP BY runner_id ;
 ```
 ***
