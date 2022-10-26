@@ -68,22 +68,3 @@ WHERE [duration(m)] <> '' ;
 
 ```
 ***
-
-### 8. How many pizzas were delivered that had both exclusions and extras?
-``` sql
-
-
-```
-***
-
-### 9. What was the total volume of pizzas ordered for each hour of the day?
-``` sql
-
-```
-***
-
-### 10. What was the volume of orders for each day of the week?
-``` sql
-
-```
-***
