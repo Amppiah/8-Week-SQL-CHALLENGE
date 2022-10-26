@@ -33,7 +33,13 @@ ON C.order_id = R.order_id ;
 ### 4.What was the average distance travelled for each customer?
 
 ``` sql
- 
+ Select customer_id, AVG(distance) AS Average_distance
+From Customer_orders_temp C
+JOIN Runner_order_temp R
+ON C.order_id =R.order_id
+WHERE cancellation =''
+GROUP BY customer_id ;
+
 ```
 ***
 
@@ -41,7 +47,10 @@ ON C.order_id = R.order_id ;
 ### 5. What was the difference between the longest and shortest delivery times for all orders?
 
 ``` sql
-
+Select MIN([duration(m)])AS Lowest, MAX([duration(m)]) AS Highest,
+( MAX([duration(m)]) -  MIN([duration(m)]) )AS duration_intereval
+From Runner_order_temp  
+WHERE [duration(m)] <> '' ;
 
 ````
 ***
