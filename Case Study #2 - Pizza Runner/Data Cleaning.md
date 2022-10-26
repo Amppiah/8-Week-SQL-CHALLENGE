@@ -12,11 +12,11 @@ Select order_id,
 	   customer_id,
 	   pizza_id,
 CASE 
-	WHEN exclusions LIKE 'NULL' or exclusions LIKE 'NULLL' THEN ''
+	WHEN exclusions IS NULL or exclusions LIKE 'NULLL' THEN ''
 	ELSE exclusions
 	END AS exclusions,
 CASE 
-	WHEN extras LIKE 'NULL' or extras LIKE 'NULL' THEN ''
+	WHEN extras IS NULL or extras LIKE 'NULL' THEN ''
 	ELSE extras
 	END AS extras,
 	order_time
