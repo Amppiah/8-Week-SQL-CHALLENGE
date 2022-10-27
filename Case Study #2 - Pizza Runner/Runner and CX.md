@@ -32,9 +32,21 @@ GROUP BY runner_id, Time_D;
 ### 3. Is there any relationship between the number of pizzas and how long the order takes to prepare?
 
 ``` sql
+WITH pizza_prep_cte AS (
 
+Select C.order_id, COUNT(C.order_id) AS pizza_count, DATEDIFF(MINUTE, C.order_time,R.[pickup-time]) AS preptime
+From Customer_orders_temp C
+JOIN Runner_order_temp R
+ON C.order_id = R.order_id
+WHERE cancellation =''
+GROUP BY C.order_id,DATEDIFF(MINUTE, C.order_time,R.[pickup-time]) 
+)
 
+Select pizza_count, AVG(preptime)
+FROM pizza_prep_cte
+GROUP BY pizza_count ;
 ```
+- It appears the time to prepare the order increases as the number of orders also increases .
 ***
 
 
