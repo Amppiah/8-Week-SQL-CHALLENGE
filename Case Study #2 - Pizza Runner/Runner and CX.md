@@ -74,8 +74,11 @@ ON R.order_id = C.order_id
 WHERE distance <> '' 
 GROUP BY R.runner_id, C.order_id,DATENAME(WEEKDAY, [pickup-time]);
 ```
+- Runner 1 and Runner 2 appear to both have an average speed of 60km/H when the distance covered for both are 10km 
+ and 25km respectively lasting for different time Periods. This is something that can be looked into to understand
+ the reason .
+- Runner 2 recorded a high Average speed of 93.6 which should be investigated further for any inconsistency
 
-- 
 ***
 
 
