@@ -1,4 +1,4 @@
-# Ingrediants Optimization 
+# Ingredients Optimization 
 
 ## Questions to be analysed in this part of the study :
 
