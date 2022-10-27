@@ -14,10 +14,18 @@ GROUP BY DATEPART(week,registration_Date) ;
 ### 2.What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 
 ``` sql
-Select [runner_id], DATEDIFF(MINUTE,order_time, [pickup-time]) AS Runer_pickup
-From Customer_orders_temp C
+DROP TABLE IF EXISTS Date_D;
+Select R.runner_id,C.order_time, R.[pickup-time], DATEDIFF(MINUTE, C.order_time, R.[pickup-time]) AS Time_D
+INTO Date_D
+FROM Customer_orders_temp C
 JOIN Runner_order_temp R
-ON C.order_id = R.order_id ;
+ON C.order_id = R.order_id
+WHERE R.distance <> '' ;
+
+
+Select runner_id, Time_D, AVG(Time_D)
+FROM Date_D 
+GROUP BY runner_id, Time_D;
 ```
 ***
 
@@ -58,8 +66,16 @@ WHERE [duration(m)] <> '' ;
 
 ### 6. What was the average speed for each runner for each delivery and do you notice any trend for these values?
 ```sql
-
+Select R.runner_id, C.order_id,DATENAME(WEEKDAY, [pickup-time]) AS DayOFWeek,
+ROUND(AVG(distance/[duration(m)] *60), 2) AS Avg_speed
+From Runner_order_temp R
+JOIN Customer_orders_temp C
+ON R.order_id = C.order_id
+WHERE distance <> '' 
+GROUP BY R.runner_id, C.order_id,DATENAME(WEEKDAY, [pickup-time]);
 ```
+
+- 
 ***
 
 
